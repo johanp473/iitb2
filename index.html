@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <title>Registration Form</title>
+                <meta charset="utf-8" />
+				
+				<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+        </head>
+		<body>
+		<div id="wrapper">
+
+			<div id="header" class="grid10 first">
+					<h1>Contact Us Form</h1>
+					</div>
+			
+			
+			<div id="nav" class="grid10 first">
+				<ul>
+					<li><a href="../index.php">Home</a></li>
+					<li><a href="product.php">Products</a></li>
+					<li><a href="register_form.php">Registration Form</a></li>
+					<li><a href="login.php">Login</a></li>
+				</ul>
+				
+			</div>
+			
+			<div id="first" class="grid3">
+			<form method="POST" action="./processFeedback.php">
+
+			<p>
+				<label for="txtName">Name: </label>
+				<input type="text" name="txtName" placeholder= "name" required/>
+			</p>
+			<p>
+				<label for="txtSurname">Surname: </label>
+				<input type="text" name:"txtSurname" placeholder= "name" required/>
+			</p>
+			
+			<p>
+				<label for="txtEmail">Email: </label>
+				<input type="text" name="txtEmail" placeholder= "name" required/>
+			</p>
+			<p>
+				<label for="radGend">Gender:</label>
+				<input type="radio" name="radGend" value="Male" />
+				male
+				<input type="radio" name="radGend" value="Female" />
+				Female
+			</p>
+			<p>
+	<?php
+$doc = new DOMDocument();
+$doc->load( 'xml/offers.xml' );
+  
+$offers = $doc->getElementsByTagName( "offer" );
+foreach( $offers as $offer )
+{
+  $names = $offer->getElementsByTagName( "name" );
+  $name = $names->item(0)->nodeValue;
+  
+  $prices= $offer->getElementsByTagName( "price" );
+  $price= $prices->item(0)->nodeValue;
+  
+  $percentages = $offer->getElementsByTagName( "percent" );
+  $percent = $percentages->item(0)->nodeValue;
+  
+ 
+  echo "<p>$name - $price - $percent\n</p>";
+  
+  }
+?> 
+			</p>
+			<p>
+			<label for="textarea">Enter any queries here:</label>
+			<textarea rows="5" cols="32"></textarea>
+			</p>
+			
+			<input type="submit" value="submit" />
+			</form>
+			</div>
+			
+			<div id="second" class="grid3 second">
+			<p> if you would rather email us or call u with any advice or 
+			problems here are our contact details. </p></br>
+				<p><h4>Telephone number:</h4> 07510141301</p></br>
+				<p><h4>Address:</h4> 67 headingley avenue
+							leeds
+							LS6 3ER</p> </br>
+				<p> <h4>e-mail:</h4> gibelec67@hotmail.com</p>
+					</div>
+					
+			    <div id="footer" class="grid10 first">
+			    	<p><p><?php echo date('d-F-Y H;is'); ?></p></p>
+					<p> Copyright  &copy;2011Johan Perera<p>
+			</div>
+			   </div>
+			    </body>
+</html>
